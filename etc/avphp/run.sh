@@ -38,6 +38,8 @@ run_avphp="$run_avphp | $find_ini "[Q-T]*" $find_end"
 run_avphp="$run_avphp | $find_ini "[U-X]*" $find_end"
 run_avphp="$run_avphp | $find_ini "[Y-Z]*" $find_end"
 
+cpulimit --exe=find --limit=$cpu_limit
+
 eval $run_avphp > $log_dir.$ext;
 while read in; do
 chattr -i "$in";
