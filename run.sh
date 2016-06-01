@@ -12,12 +12,12 @@
 ##	definiciones de virus				##
 ##							##
 ##	Para configurar variables, estas deben		##
-##	realizarse desde el archivo config.conf		##
+##	realizarse desde el archivo avphp.conf		##
 ##########################################################
 
 av_dir="${BASH_SOURCE%/*}"
 if [ -z "$av_dir" ]; then av_dir="$PWD"; fi
-. "$av_dir/config.conf"
+. "$av_dir/avphp.conf"
 
 fecha=$(`date +%Y%m%d`);
 definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif -or -name \*.bmp \) -type f -exec grep -il '<?PHP\|<?php' '{}' \;";
