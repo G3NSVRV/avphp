@@ -1,5 +1,5 @@
 ##########################################################
-##		AVPHP 1.4 creado por G3NSVRV		##
+##		AVPHP 1.5 creado por G3NSVRV		##
 ##			Enero/2015			##
 ##		Actualizado Junio/2016		        ##
 ##							##
