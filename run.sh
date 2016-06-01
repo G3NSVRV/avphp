@@ -1,25 +1,24 @@
+#!/bin/bash
 ##########################################################
-##		AVPHP 1.5 creado por G3NSVRV		##
-##			Enero/2015			##
-##		Actualizado Junio/2016		        ##
-##							##
-##	Este script tiene como objetivo buscar		##
-##	encabezados PHP en busca de spammers		##
-##							##
-##	Para incluir encabezados se deben agregar	##
-##	al archivo database.def que incluye este	##
-##	paquete, el cual funciona como archivo de	##
-##	definiciones de virus				##
-##							##
-##	Para configurar variables, estas deben		##
-##	realizarse desde el archivo avphp.conf		##
+##              AVPHP 1.5 creado por G3NSVRV            ##
+##                      Enero/2015                      ##
+##              Actualizado Junio/2016                  ##
+##                                                      ##
+##      Este script tiene como objetivo buscar          ##
+##      encabezados PHP en busca de spammers            ##
+##                                                      ##
+##      Para incluir encabezados se deben agregar       ##
+##      al archivo database.def que incluye este        ##
+##      paquete, el cual funciona como archivo de       ##
+##      definiciones de virus                           ##
+##                                                      ##
+##      Para configurar variables, estas deben          ##
+##      realizarse desde el archivo avphp.conf          ##
 ##########################################################
 
-av_dir="${BASH_SOURCE%/*}"
-if [ -z "$av_dir" ]; then av_dir="$PWD"; fi
+av_dir=$PWD
 . "$av_dir/avphp.conf"
-
-fecha=$(`date +%Y%m%d`);
+fecha=(`date +%Y%m%d`);
 definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif -or -name \*.bmp \) -type f -exec grep -il '<?PHP\|<?php' '{}' \;";
 
 while read in; do
@@ -38,19 +37,20 @@ run_avphp="$run_avphp | $find_ini "[Q-T]*" $find_end"
 run_avphp="$run_avphp | $find_ini "[U-X]*" $find_end"
 run_avphp="$run_avphp | $find_ini "[Y-Z]*" $find_end"
 
-cpulimit --exe=find --limit=$cpu_limit
+echo $cpu_limit
+cpulimit --exe=find -l $cpu_limit &
 
-eval $run_avphp > $log_dir.$ext;
+eval $run_avphp > $log_dir.log;
 while read in; do
 chattr -i "$in";
 mv "$in" "$in.infectado";
-done < $log_dir.$ext
+done < $log_dir.log
 
-if ([ -s $log_dir.$ext ]); then
-cat $log_dir.$ext >> $log_dir-$fecha.$ext;
-mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.$ext;
+if ([ -s $log_dir.log ]); then
+cat $log_dir.log >> $log_dir-$fecha.log;
+mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.log;
 fi
 
-rm -f $log_dir.$ext;
+rm -f $log_dir.log;
 
 ################
