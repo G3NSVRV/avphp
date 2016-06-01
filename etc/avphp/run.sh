@@ -16,10 +16,10 @@
 ##########################################################
 
 av_dir="${BASH_SOURCE%/*}"
-if [[ ! -d "$av_dir" ]]; then av_dir="$PWD"; fi
+if [ -z "$av_dir" ]; then av_dir="$PWD"; fi
 . "$av_dir/config.conf"
 
-fecha=(`date +%Y%m%d`);
+fecha=$(`date +%Y%m%d`);
 definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif -or -name \*.bmp \) -type f -exec grep -il '<?PHP\|<?php' '{}' \;";
 
 while read in; do
