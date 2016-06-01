@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-if [ "$(whoami)" == "root" ]; then
+if [ "$(whoami)" = "root" ]; then
 rm -f /etc/avphp/;
 mkdir /etc/avphp/;
 cp ./* /etc/avphp/;
