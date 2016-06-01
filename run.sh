@@ -7,7 +7,7 @@
 ##	encabezados PHP en busca de spammers		##
 ##							##
 ##	Para incluir encabezados se deben agregar	##
-##	al archivo include.inc que incluye este		##
+##	al archivo database.def que incluye este	##
 ##	paquete, el cual funciona como archivo de	##
 ##	definiciones de virus				##
 ##							##
@@ -25,7 +25,7 @@ definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif
 while read in; do
 php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
-done < $av_dir/include.inc
+done < $av_dir/database.def
 
 find_ini="find $search_dir -iname"
 find_end="-maxdepth 1 $definitions"
