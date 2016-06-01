@@ -27,7 +27,17 @@ php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
 done < $av_dir/include.inc
 
-run_avphp="find $search_dir $definitions";
+find_ini="find $search_dir -iname"
+find_end="-maxdepth 1 $definitions"
+run_avphp="$find_ini "[0-9]*" $find_end";
+run_avphp="$run_avphp | $find_ini "[A-D]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[E-H]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[I-L]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[M-P]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[Q-T]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[U-X]*" $find_end"
+run_avphp="$run_avphp | $find_ini "[Y-Z]*" $find_end"
+
 eval $run_avphp > $log_dir.$ext;
 while read in; do
 chattr -i "$in";
