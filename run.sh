@@ -1,4 +1,4 @@
-#!/bin/bash
+/bin/bash
 ##########################################################
 ##              AVPHP 1.5 creado por G3NSVRV            ##
 ##                      Enero/2015                      ##
@@ -26,18 +26,16 @@ php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
 done < $av_dir/database.def
 
-find_ini="find $search_dir -iname"
-find_end="-maxdepth 1 $definitions"
-run_avphp="$find_ini "[0-9]*" $find_end";
-run_avphp="$run_avphp | $find_ini "[A-D]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[E-H]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[I-L]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[M-P]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[Q-T]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[U-X]*" $find_end"
-run_avphp="$run_avphp | $find_ini "[Y-Z]*" $find_end"
-
-echo $cpu_limit
+find_ini="find $search_dir -maxdepth 1 -iname"
+run_avphp="$find_ini "[0-9]*" $definitions";
+run_avphp="$run_avphp | $find_ini "[A-D]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[E-H]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[I-L]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[M-P]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[Q-T]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[U-X]*" $definitions"
+run_avphp="$run_avphp | $find_ini "[Y-Z]*" $definitions"
+echo $run_avphp
 cpulimit --exe=find -l $cpu_limit &
 
 eval $run_avphp > $log_dir.log;
