@@ -1,7 +1,7 @@
 ##########################################################
 ##		AVPHP 1.4 creado por G3NSVRV		##
 ##			Enero/2015			##
-##		Actualizado Octubre/2015		##
+##		Actualizado Junio/2016		##
 ##							##
 ##	Este script tiene como objetivo buscar		##
 ##	encabezados PHP en busca de spammers		##
