@@ -29,13 +29,13 @@ done < $av_dir/database.def
 
 find_ini="find $search_dir -maxdepth 1 -iname";
 run_avphp="$find_ini "[0-9]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[A-D]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[E-H]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[I-L]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[M-P]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[Q-T]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[U-X]*" $definitions";
-run_avphp="$run_avphp | $find_ini "[Y-Z]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[A-D]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[E-H]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[I-L]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[M-P]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[Q-T]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[U-X]*" $definitions";
+run_avphp="$run_avphp & $find_ini "[Y-Z]*" $definitions";
 
 cpulimit --exe=find -l $cpu_limit &
 
