@@ -1,48 +1,44 @@
-#!/bin/bash
+##########################################################
+##		AVPHP 1.4 creado por G3NSVRV		##
+##			Enero/2015			##
+##		Actualizado Octubre/2015		##
+##							##
+##	Este script tiene como objetivo buscar		##
+##	encabezados PHP en busca de spammers		##
+##							##
+##	Para incluir encabezados se deben agregar	##
+##	al archivo include.inc que incluye este		##
+##	paquete, el cual funciona como archivo de	##
+##	definiciones de virus				##
+##							##
+##	Para configurar variables, estas deben		##
+##	realizarse desde el archivo config.conf		##
+##########################################################
 
-if [ -n "$(ps aux|grep find)" ]; then 
-av_dir=$PWD;
-. "$av_dir/avphp.conf"
+av_dir="${BASH_SOURCE%/*}"
+if [[ ! -d "$av_dir" ]]; then av_dir="$PWD"; fi
+. "$av_dir/config.conf"
+
 fecha=(`date +%Y%m%d`);
 definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif -or -name \*.bmp \) -type f -exec grep -il '<?PHP\|<?php' '{}' \;";
 
 while read in; do
 php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
-done < $av_dir/database.def
+done < $av_dir/include.inc
 
-find_ini="find $search_dir -maxdepth 1 -iname";
-scan_dir1="$find_ini "'"'"[0-9]*"'"'"|grep -vw $search_dir";
-scan_dir2="$find_ini "'"'"[A-D]*"'"'"|grep -vw $search_dir";
-scan_dir3="$find_ini "'"'"[E-H]*"'"'"|grep -vw $search_dir";
-scan_dir4="$find_ini "'"'"[I-L]*"'"'"|grep -vw $search_dir";
-scan_dir5="$find_ini "'"'"[M-P]*"'"'"|grep -vw $search_dir";
-scan_dir6="$find_ini "'"'"[Q-T]*"'"'"|grep -vw $search_dir";
-scan_dir7="$find_ini "'"'"[U-X]*"'"'"|grep -vw $search_dir";
-scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"|grep -vw $search_dir";
-
-let cpu_limit=$cpu_limit/8
-cpulimit --exe=find -l $cpu_limit &
-
-for n in `seq 1 8`; do
-test=scan_dir$n
-eval ${!test} > $temp_dir/scan_dir$n.temp
-while read in; do
-PzKg4lu7AM="find $in $definitions"
-eval $PzKg4lu7AM >> $log_dir.log &
-done < $temp_dir/scan_dir$n.temp &
-done
-
-eval $run_avphp > $log_dir.log;
+run_avphp="find $search_dir $definitions";
+eval $run_avphp > $log_dir.$ext;
 while read in; do
 chattr -i "$in";
 mv "$in" "$in.infectado";
-done < $log_dir.log
+done < $log_dir.$ext
 
-if ([ -s $log_dir.log ]); then
-cat $log_dir.log >> $log_dir-$fecha.log;
-mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.log;
+if ([ -s $log_dir.$ext ]); then
+cat $log_dir.$ext >> $log_dir-$fecha.$ext;
+mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.$ext;
 fi
 
-rm -f $log_dir.log;
-fi
+rm -f $log_dir.$ext;
+
+################
