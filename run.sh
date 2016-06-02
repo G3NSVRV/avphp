@@ -28,21 +28,23 @@ definitions="$definitions , $php_func";
 done < $av_dir/database.def
 
 find_ini="find $search_dir -maxdepth 1 -iname";
-av_dir1="$find_ini "'"'"[0-9]*"'"'"";
-av_dir2="$find_ini "'"'"[A-D]*"'"'"";
-av_dir3="$find_ini "'"'"[E-H]*"'"'"";
-av_dir4="$find_ini "'"'"[I-L]*"'"'"";
-av_dir5="$find_ini "'"'"[M-P]*"'"'"";
-av_dir6="$find_ini "'"'"[Q-T]*"'"'"";
-av_dir7="$find_ini "'"'"[U-X]*"'"'"";
-av_dir8="$find_ini "'"'"[Y-Z]*"'"'"";
+scan_dir1="$find_ini "'"'"[0-9]*"'"'"";
+scan_dir2="$find_ini "'"'"[A-D]*"'"'"";
+scan_dir3="$find_ini "'"'"[E-H]*"'"'"";
+scan_dir4="$find_ini "'"'"[I-L]*"'"'"";
+scan_dir5="$find_ini "'"'"[M-P]*"'"'"";
+scan_dir6="$find_ini "'"'"[Q-T]*"'"'"";
+scan_dir7="$find_ini "'"'"[U-X]*"'"'"";
+scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"";
 
 for n in `seq 1 8`; do
-eval $av_dir$n > $temp_dir/av_dir$n.temp;
+test=scan_dir$n
+eval ${!test} > $temp_dir/scan_dir$n.temp 
+
 while read in; do
 #find $in $definitions;
 echo -e "$in\t$n"
-done < $temp_dir/av_dir$n.temp &
+done < $temp_dir/scan_dir$n.temp &
 done
 
 #run_avphp="find $av_dir1 $definitions";
