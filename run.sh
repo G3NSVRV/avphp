@@ -1,6 +1,6 @@
 #!/bin/bash
 ##########################################################
-##              AVPHP 1.5 creado por G3NSVRV            ##
+##              AVPHP 2.0 creado por G3NSVRV            ##
 ##                      Enero/2015                      ##
 ##              Actualizado Junio/2016                  ##
 ##                                                      ##
@@ -39,11 +39,9 @@ scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"";
 
 for n in `seq 1 8`; do
 test=scan_dir$n
-eval ${!test} > $temp_dir/scan_dir$n.temp 
-
+eval ${!test} > $temp_dir/scan_dir$n.temp
 while read in; do
-#find $in $definitions;
-echo -e "$in\t$n"
+find $in $definitions >> $log_dir.log &
 done < $temp_dir/scan_dir$n.temp &
 done
 
