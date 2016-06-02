@@ -28,14 +28,23 @@ definitions="$definitions , $php_func";
 done < $av_dir/database.def
 
 find_ini="find $search_dir -maxdepth 1 -iname";
-run_avphp="$find_ini "'"'"[0-9]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[A-D]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[E-H]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[I-L]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[M-P]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[Q-T]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[U-X]*"'"'" $definitions";
-run_avphp="$run_avphp & $find_ini "'"'"[Y-Z]*"'"'" $definitions";
+av_dir1="$find_ini "'"'"[0-9]*"'"'" ";
+av_dir2="$find_ini "'"'"[A-D]*"'"'" ";
+av_dir3="$find_ini "'"'"[E-H]*"'"'" ";
+av_dir4="$find_ini "'"'"[I-L]*"'"'" ";
+av_dir5="$find_ini "'"'"[M-P]*"'"'" ";
+av_dir6="$find_ini "'"'"[Q-T]*"'"'" ";
+av_dir7="$find_ini "'"'"[U-X]*"'"'" ";
+av_dir8="$find_ini "'"'"[Y-Z]*"'"'" ";
+
+run_avphp="find $av_dir1 $definitions";
+run_avphp="$run_avphp & find $av_dir2 $definitions";
+run_avphp="$run_avphp & find $av_dir3 $definitions";
+run_avphp="$run_avphp & find $av_dir4 $definitions";
+run_avphp="$run_avphp & find $av_dir5 $definitions";
+run_avphp="$run_avphp & find $av_dir6 $definitions";
+run_avphp="$run_avphp & find $av_dir7 $definitions";
+run_avphp="$run_avphp & find $av_dir8 $definitions";
 
 cpulimit --exe=find -l $cpu_limit &
 
