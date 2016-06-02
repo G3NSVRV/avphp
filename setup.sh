@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 if [ "$(whoami)" = "root" ]; then
 rm -f /etc/avphp/;
 mkdir /etc/avphp/;
