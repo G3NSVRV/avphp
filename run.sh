@@ -12,14 +12,14 @@ definitions="$definitions , $php_func";
 done < $av_dir/database.def
 
 find_ini="find $search_dir -maxdepth 1 -iname";
-scan_dir1="$find_ini "'"'"[0-9]*"'"'"";
-scan_dir2="$find_ini "'"'"[A-D]*"'"'"";
-scan_dir3="$find_ini "'"'"[E-H]*"'"'"";
-scan_dir4="$find_ini "'"'"[I-L]*"'"'"";
-scan_dir5="$find_ini "'"'"[M-P]*"'"'"";
-scan_dir6="$find_ini "'"'"[Q-T]*"'"'"";
-scan_dir7="$find_ini "'"'"[U-X]*"'"'"";
-scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"";
+scan_dir1="$find_ini "'"'"[0-9]*"'"'"|grep -vw $search_dir";
+scan_dir2="$find_ini "'"'"[A-D]*"'"'"|grep -vw $search_dir";
+scan_dir3="$find_ini "'"'"[E-H]*"'"'"|grep -vw $search_dir";
+scan_dir4="$find_ini "'"'"[I-L]*"'"'"|grep -vw $search_dir";
+scan_dir5="$find_ini "'"'"[M-P]*"'"'"|grep -vw $search_dir";
+scan_dir6="$find_ini "'"'"[Q-T]*"'"'"|grep -vw $search_dir";
+scan_dir7="$find_ini "'"'"[U-X]*"'"'"|grep -vw $search_dir";
+scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"|grep -vw $search_dir";
 
 cpulimit --exe=find -l $cpu_limit &
 
