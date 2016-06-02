@@ -25,7 +25,8 @@ for n in `seq 1 8`; do
 test=scan_dir$n
 eval ${!test} > $temp_dir/scan_dir$n.temp
 while read in; do
-find $in $definitions >> $log_dir.log &
+PzKg4lu7AM="find $in $definitions"
+eval $PzKg4lu7AM >> $log_dir.log &
 done < $temp_dir/scan_dir$n.temp &
 done
 
