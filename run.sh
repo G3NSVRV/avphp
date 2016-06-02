@@ -21,6 +21,8 @@ scan_dir6="$find_ini "'"'"[Q-T]*"'"'"";
 scan_dir7="$find_ini "'"'"[U-X]*"'"'"";
 scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"";
 
+cpulimit --exe=find -l $cpu_limit &
+
 for n in `seq 1 8`; do
 test=scan_dir$n
 eval ${!test} > $temp_dir/scan_dir$n.temp
@@ -29,17 +31,6 @@ PzKg4lu7AM="find $in $definitions"
 eval $PzKg4lu7AM >> $log_dir.log &
 done < $temp_dir/scan_dir$n.temp &
 done
-
-#run_avphp="find $av_dir1 $definitions";
-#run_avphp="$run_avphp & find $av_dir2 $definitions";
-#run_avphp="$run_avphp & find $av_dir3 $definitions";
-#run_avphp="$run_avphp & find $av_dir4 $definitions";
-#run_avphp="$run_avphp & find $av_dir5 $definitions";
-#run_avphp="$run_avphp & find $av_dir6 $definitions";
-#run_avphp="$run_avphp & find $av_dir7 $definitions";
-#run_avphp="$run_avphp & find $av_dir8 $definitions";
-
-cpulimit --exe=find -l $cpu_limit &
 
 eval $run_avphp > $log_dir.log;
 while read in; do
