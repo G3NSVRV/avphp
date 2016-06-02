@@ -40,9 +40,7 @@ mv "$in" "$in.infectado";
 done < $log_dir.log
 
 if ([ -s $log_dir.log ]); then
-cat $log_dir.log >> $log_dir-$fecha.log;
+mv $log_dir.log $log_dir-$fecha.log;
 mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.log;
 fi
-
-rm -f $log_dir.log;
 fi
