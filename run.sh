@@ -21,6 +21,7 @@ scan_dir6="$find_ini "'"'"[Q-T]*"'"'"|grep -vw $search_dir";
 scan_dir7="$find_ini "'"'"[U-X]*"'"'"|grep -vw $search_dir";
 scan_dir8="$find_ini "'"'"[Y-Z]*"'"'"|grep -vw $search_dir";
 
+let $cpu_limit=$cpu_limit/8
 cpulimit --exe=find -l $cpu_limit &
 
 for n in `seq 1 8`; do
@@ -45,4 +46,3 @@ fi
 
 rm -f $log_dir.log;
 fi
-################
