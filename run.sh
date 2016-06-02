@@ -29,7 +29,7 @@ test=scan_dir$n
 eval ${!test} > $temp_dir/scan_dir$n.temp
 while read in; do
 PzKg4lu7AM="find $in $definitions"
-eval $PzKg4lu7AM >> $log_dir.log &
+eval $PzKg4lu7AM >> $log_dir.log;
 done < $temp_dir/scan_dir$n.temp &
 done
 
