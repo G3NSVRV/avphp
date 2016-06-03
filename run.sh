@@ -13,14 +13,14 @@ definitions="$definitions , $php_func";
 done < $av_dir/include.inc
 
 run_avphp="find $search_dir $definitions";
-eval $run_avphp > $log_dir.$ext;
+eval $run_avphp > $log_dir.log;
 while read in; do
 chattr -i "$in";
 mv "$in" "$in.infectado";
-done < $log_dir.$ext
+done < $log_dir.log
 
-if ([ -s $log_dir.$ext ]); then
-mv $log_dir.$ext $log_dir-$fecha.$ext;
-mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.$ext;
+if ([ -s $log_dir.log ]); then
+mv $log_dir.log $log_dir-$fecha.log;
+mail -s "Reporte de Virus" $mail_to < $log_dir-$fecha.log;
 fi
 fi
