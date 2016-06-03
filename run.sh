@@ -12,6 +12,7 @@ php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
 done < $av_dir/include.inc
 
+cpulimit --exe=find -l 4 &
 run_avphp="find $search_dir $definitions";
 eval $run_avphp > $log_dir.log;
 while read in; do
