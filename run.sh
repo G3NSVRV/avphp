@@ -9,7 +9,7 @@ definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif
 while read in; do
 php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
-done < $av_dir/database.def
+done < $av_dir/virusdb.def
 
 find_ini="find $search_dir -maxdepth 1 -iname";
 scan_dir1="$find_ini "'"'"[0-9]*"'"'"|grep -vw $search_dir";
