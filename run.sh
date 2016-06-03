@@ -2,7 +2,7 @@
 if [ -n "$(ps aux|grep find)" ]; then 
 av_dir="${BASH_SOURCE%/*}"
 if [[ ! -d "$av_dir" ]]; then av_dir="$PWD"; fi
-. "$av_dir/config.conf"
+. "$av_dir/avphp.conf"
 
 fecha=(`date +%Y%m%d`);
 definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif -or -name \*.bmp \) -type f -exec grep -il '<?PHP\|<?php' '{}' \;";
@@ -10,7 +10,7 @@ definitions="\( -name \*.jpg -or -name \*.png -or -name \*.jpeg -or -name \*.gif
 while read in; do
 php_func="\( -name \*.php \) -exec grep -il '$in' '{}' \;";
 definitions="$definitions , $php_func";
-done < $av_dir/include.inc
+done < $av_dir/virusdb.def
 
 cpulimit --exe=find -l 4 &
 run_avphp="find $search_dir $definitions";
