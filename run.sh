@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "$(ps aux|grep find|grep -v grep)" ]; then
+if [ -z "$(ps aux|grep -w find|grep -v grep)" ]; then
 av_dir="${BASH_SOURCE%/*}"
 if [[ ! -d "$av_dir" ]]; then av_dir="$PWD"; fi
 . "$av_dir/avphp.conf"
