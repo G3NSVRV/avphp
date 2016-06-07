@@ -8,7 +8,7 @@ Thanks
 -G3NSVRV
 
 #Installation
-version=1.5;wget https://github.com/G3NSVRV/avphp/archive/$version.zip;test=$(unzip $version.zip|tail -n 1|awk '{print $2}'|cut -d '/' -f1);rm -f $version.zip;rm -rf /etc/avphp;mv $test /etc/avphp
+version=1.5;wget -O $version.zip https://github.com/G3NSVRV/avphp/archive/$version.zip;test=$(unzip $version.zip|tail -n 1|awk '{print $2}'|cut -d '/' -f1);rm -f $version.zip;rm -rf /etc/avphp;mv $test /etc/avphp
 
 
 Enero/2015
