@@ -1,6 +1,5 @@
 #!/bin/bash
-
-if [ -z "$(ps aux|grep -w find|grep -v grep)" ]; then
+if [ -z "$(ps aux|grep find|grep -v "grep find")" ]; then
 av_dir=$PWD;
 . "$av_dir/avphp.conf"
 fecha=(`date +%Y%m%d`);
